@@ -1,0 +1,421 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="E_CommerceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="CommaSeparated_Result">
+    <Property Name="sID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </ComplexType>
+  <ComplexType Name="fn_Split_Result">
+    <Property Name="position" Type="Int32" Nullable="false" />
+    <Property Name="value" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+  </ComplexType>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsDisable" Type="Boolean" Nullable="false" />
+    <Property Name="CustomerId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="CartId" />
+    </Key>
+    <Property Name="CartId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemsQunatity" Type="Int32" Nullable="false" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="ItemsId" Type="Int32" Nullable="false" />
+    <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="isDisable" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Item" Relationship="Self.FK_Carts_Items" FromRole="Carts" ToRole="Items" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoriesId" />
+    </Key>
+    <Property Name="CategoriesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoriesName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Items" Relationship="Self.FK_Items_Categories" FromRole="Categories" ToRole="Items" />
+    <NavigationProperty Name="Ingredients" Relationship="Self.CategoryIngredient" FromRole="Categories" ToRole="Ingredients" />
+  </EntityType>
+  <EntityType Name="Ingredient">
+    <Key>
+      <PropertyRef Name="IngredientId" />
+    </Key>
+    <Property Name="IngredientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IngredientName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Categories" Relationship="Self.CategoryIngredient" FromRole="Ingredients" ToRole="Categories" />
+    <NavigationProperty Name="Items" Relationship="E_CommerceModel.ItemsIngredients" FromRole="Ingredient" ToRole="Item" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="ItemId" />
+    </Key>
+    <Property Name="ItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CategoriesId" Type="Int32" Nullable="false" />
+    <Property Name="IsDisable" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Carts" Relationship="Self.FK_Carts_Items" FromRole="Items" ToRole="Carts" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Items_Categories" FromRole="Items" ToRole="Categories" />
+    <NavigationProperty Name="Orders" Relationship="E_CommerceModel.FK_Orders_Items" FromRole="Item" ToRole="Order" />
+    <NavigationProperty Name="Ingredients" Relationship="E_CommerceModel.ItemsIngredients" FromRole="Item" ToRole="Ingredient" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Carts_Items">
+    <End Role="Items" Type="Self.Item" Multiplicity="1" />
+    <End Role="Carts" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Items">
+        <PropertyRef Name="ItemId" />
+      </Principal>
+      <Dependent Role="Carts">
+        <PropertyRef Name="ItemsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Items_Categories">
+    <End Role="Categories" Type="Self.Category" Multiplicity="1" />
+    <End Role="Items" Type="Self.Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CategoriesId" />
+      </Principal>
+      <Dependent Role="Items">
+        <PropertyRef Name="CategoriesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+  </Association>
+  <Association Name="CategoryIngredient">
+    <End Role="Categories" Type="Self.Category" Multiplicity="*" />
+    <End Role="Ingredients" Type="Self.Ingredient" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="data_Base" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+    <EntitySet Name="Carts" EntityType="Self.Cart" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Ingredients" EntityType="Self.Ingredient" />
+    <EntitySet Name="Items" EntityType="Self.Item" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Carts_Items" Association="Self.FK_Carts_Items">
+      <End Role="Items" EntitySet="Items" />
+      <End Role="Carts" EntitySet="Carts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Items_Categories" Association="Self.FK_Items_Categories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Items" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="CategoryIngredient" Association="Self.CategoryIngredient">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Ingredients" EntitySet="Ingredients" />
+    </AssociationSet>
+    <FunctionImport Name="CommaSeparated" ReturnType="Collection(E_CommerceModel.CommaSeparated_Result)" IsComposable="true">
+      <Parameter Name="psCSString" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="fn_Split" ReturnType="Collection(E_CommerceModel.fn_Split_Result)" IsComposable="true">
+      <Parameter Name="text" Mode="In" Type="String" />
+      <Parameter Name="delimiter" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="deleteCart">
+      <Parameter Name="cartId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="deleteItem">
+      <Parameter Name="ItemId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getAuthenticatedCart" ReturnType="Collection(E_CommerceModel.getAuthenticatedCart_Result)">
+      <Parameter Name="CustomerName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getCartsList" ReturnType="Collection(E_CommerceModel.getCartsList_Result)" />
+    <FunctionImport Name="getCategories" ReturnType="Collection(E_CommerceModel.getCategories_Result)" />
+    <FunctionImport Name="getIngredientsByCategoryId" ReturnType="Collection(String)">
+      <Parameter Name="CategoryId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getIngredientsList" ReturnType="Collection(E_CommerceModel.getIngredientsList_Result)" />
+    <FunctionImport Name="getItemByCatName" ReturnType="Collection(E_CommerceModel.getItemByCatName_Result)">
+      <Parameter Name="CategoriesName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getItemById" ReturnType="Collection(E_CommerceModel.getItemById_Result)">
+      <Parameter Name="ItemId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getItems" ReturnType="Collection(E_CommerceModel.getItems_Result)" />
+    <FunctionImport Name="getItemsByIngredientName" ReturnType="Collection(E_CommerceModel.getItemsByIngredientName_Result)">
+      <Parameter Name="IngredientName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getUserById" ReturnType="Collection(E_CommerceModel.getUserById_Result)">
+      <Parameter Name="UserId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="saveItem">
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Price" Mode="In" Type="Decimal" />
+      <Parameter Name="ImageUrl" Mode="In" Type="String" />
+      <Parameter Name="CategoriesId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="saveNewCart">
+      <Parameter Name="ItemsQuantity" Mode="In" Type="Int32" />
+      <Parameter Name="DateCreated" Mode="In" Type="DateTime" />
+      <Parameter Name="ItemsId" Mode="In" Type="Int32" />
+      <Parameter Name="CustomerName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="updateCart">
+      <Parameter Name="CartId" Mode="In" Type="Int32" />
+      <Parameter Name="ItemsQuantity" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getUsersList" ReturnType="Collection(E_CommerceModel.getUsersList_Result)" />
+    <EntitySet Name="Orders" EntityType="E_CommerceModel.Order" />
+    <AssociationSet Name="FK_Orders_Items" Association="E_CommerceModel.FK_Orders_Items">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <FunctionImport Name="saveNewOrder">
+      <Parameter Name="DateCreated" Mode="In" Type="DateTime" />
+      <Parameter Name="ItemId" Mode="In" Type="Int32" />
+      <Parameter Name="PricePerUnit" Mode="In" Type="Decimal" />
+      <Parameter Name="OrderedBy" Mode="In" Type="String" />
+      <Parameter Name="ItemsQUantity" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getOrderList" ReturnType="Collection(E_CommerceModel.getOrderList_Result)" />
+    <FunctionImport Name="getOrdersByDate" ReturnType="Collection(E_CommerceModel.getOrdersByDate_Result)">
+      <Parameter Name="date" Mode="In" Type="String" />
+    </FunctionImport>
+    <AssociationSet Name="ItemsIngredients" Association="E_CommerceModel.ItemsIngredients">
+      <End Role="Ingredient" EntitySet="Ingredients" />
+      <End Role="Item" EntitySet="Items" />
+    </AssociationSet>
+    <FunctionImport Name="SaveNewItemsIngredients">
+      <Parameter Name="ItemId" Mode="In" Type="Int32" />
+      <Parameter Name="IngredientId" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="getAuthenticatedCart_Result">
+    <Property Type="Int32" Name="CartId" Nullable="false" />
+    <Property Type="Int32" Name="ItemsQunatity" Nullable="false" />
+    <Property Type="DateTime" Name="DateCreated" Nullable="false" />
+    <Property Type="Int32" Name="ItemsId" Nullable="false" />
+    <Property Type="Int32" Name="ItemId" Nullable="false" />
+    <Property Type="Decimal" Name="Price" Nullable="false" Precision="19" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="ImageUrl" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="getCartsList_Result">
+    <Property Type="Int32" Name="CartId" Nullable="false" />
+    <Property Type="DateTime" Name="DateCreated" Nullable="false" />
+    <Property Type="Int32" Name="ItemsQunatity" Nullable="false" />
+    <Property Type="Int32" Name="ItemId" Nullable="false" />
+    <Property Type="Decimal" Name="Price" Nullable="false" Precision="19" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="ImageUrl" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="getCategories_Result">
+    <Property Type="Int32" Name="CategoriesId" Nullable="false" />
+    <Property Type="String" Name="CategoriesName" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="getIngredientsList_Result">
+    <Property Type="Int32" Name="IngredientId" Nullable="false" />
+    <Property Type="String" Name="IngredientName" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="getItemByCatName_Result">
+    <Property Type="Int32" Name="ItemId" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="Price" Nullable="false" Precision="19" />
+    <Property Type="String" Name="ImageUrl" Nullable="false" />
+    <Property Type="Int32" Name="CategoriesId" Nullable="false" />
+    <Property Type="String" Name="CategoriesName" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="getItemById_Result">
+    <Property Type="Int32" Name="ItemId" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="Price" Nullable="false" Precision="19" />
+    <Property Type="String" Name="ImageUrl" Nullable="false" />
+    <Property Type="Int32" Name="CategoriesId" Nullable="false" />
+    <Property Type="String" Name="CategoriesName" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="getItems_Result">
+    <Property Type="Int32" Name="ItemId" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="Price" Nullable="false" Precision="19" />
+    <Property Type="String" Name="ImageUrl" Nullable="false" />
+    <Property Type="Int32" Name="CategoriesId" Nullable="false" />
+    <Property Type="String" Name="CategoriesName" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="getItemsByIngredientName_Result">
+    <Property Type="Int32" Name="ItemId" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="Price" Nullable="false" Precision="19" />
+    <Property Type="String" Name="ImageUrl" Nullable="false" />
+    <Property Type="Int32" Name="CategoriesId" Nullable="false" />
+    <Property Type="String" Name="CategoriesName" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="getUserById_Result">
+    <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="256" />
+    <Property Type="Boolean" Name="EmailConfirmed" Nullable="false" />
+    <Property Type="String" Name="PasswordHash" Nullable="true" />
+    <Property Type="String" Name="SecurityStamp" Nullable="true" />
+    <Property Type="String" Name="PhoneNumber" Nullable="true" />
+    <Property Type="Boolean" Name="PhoneNumberConfirmed" Nullable="false" />
+    <Property Type="Boolean" Name="TwoFactorEnabled" Nullable="false" />
+    <Property Type="DateTime" Name="LockoutEndDateUtc" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="LockoutEnabled" Nullable="false" />
+    <Property Type="Int32" Name="AccessFailedCount" Nullable="false" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="128" />
+    <Property Type="Boolean" Name="IsDisable" Nullable="false" />
+    <Property Type="String" Name="CustomerId" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="getUsersList_Result">
+    <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="256" />
+    <Property Type="Boolean" Name="EmailConfirmed" Nullable="false" />
+    <Property Type="String" Name="PasswordHash" Nullable="true" />
+    <Property Type="String" Name="SecurityStamp" Nullable="true" />
+    <Property Type="String" Name="PhoneNumber" Nullable="true" />
+    <Property Type="Boolean" Name="PhoneNumberConfirmed" Nullable="false" />
+    <Property Type="Boolean" Name="TwoFactorEnabled" Nullable="false" />
+    <Property Type="DateTime" Name="LockoutEndDateUtc" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="LockoutEnabled" Nullable="false" />
+    <Property Type="Int32" Name="AccessFailedCount" Nullable="false" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="128" />
+    <Property Type="Boolean" Name="IsDisable" Nullable="false" />
+    <Property Type="String" Name="CustomerId" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="ItemId" Type="Int32" Nullable="false" />
+    <Property Name="PricePerUnit" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="OrderedBy" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Item" Relationship="E_CommerceModel.FK_Orders_Items" FromRole="Order" ToRole="Item" />
+    <Property Name="ItemsQuantity" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Orders_Items">
+    <End Type="E_CommerceModel.Item" Role="Item" Multiplicity="1" />
+    <End Type="E_CommerceModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="ItemId" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="getOrderList_Result">
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="PricePerUnit" Nullable="false" Precision="19" />
+    <Property Type="Int32" Name="ItemsQuantity" Nullable="false" />
+    <Property Type="DateTime" Name="DateCreated" Nullable="false" />
+    <Property Type="String" Name="OrderedBy" Nullable="false" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="getOrdersByDate_Result">
+    <Property Type="Int32" Name="OrderId" Nullable="false" />
+    <Property Type="DateTime" Name="DateCreated" Nullable="false" />
+    <Property Type="Int32" Name="ItemId" Nullable="false" />
+    <Property Type="Decimal" Name="PricePerUnit" Nullable="false" Precision="19" />
+    <Property Type="String" Name="OrderedBy" Nullable="false" MaxLength="30" />
+    <Property Type="Int32" Name="ItemsQuantity" Nullable="false" />
+  </ComplexType>
+  <Association Name="ItemsIngredients">
+    <End Type="E_CommerceModel.Ingredient" Role="Ingredient" Multiplicity="*" />
+    <End Type="E_CommerceModel.Item" Role="Item" Multiplicity="*" />
+  </Association>
+</Schema>

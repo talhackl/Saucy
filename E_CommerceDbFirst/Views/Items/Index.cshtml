@@ -1,0 +1,154 @@
+﻿<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<style>
+    .figure-img {
+        width: 100%;
+        height: 18rem;
+    }
+    #searchdiv{
+        width:25%;
+    }
+</style>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron">
+    <h1 style="text-align:center">Welcome To SAUCY</h1>
+   
+
+</div>
+    <div class="container" style="margin:1.5rem;">
+        <div class="row">
+        </div>
+    </div>
+    @section scripts{
+        <script>
+            $(document).ready(function () {
+
+                //checking if localStorage donot have the itemsId for Cart the create new array otherwise fill the existing items in array
+                
+                localStorage.removeItem("UserCart");
+                //Click On Show Button
+                $(".row").on("click", "#btncaption", function () {
+
+                    if (localStorage.getItem("UserCart") == null) {
+                        var cartsList = [];
+                    }
+                    else {
+                        var cartsList = JSON.parse(localStorage.getItem("UserCart"));
+                    }
+                    //for filling objects in array
+                    var cart = {};
+
+                    var button = $(this);
+                    var itemId = button.attr("data-item-id");
+
+                    var flag = 0;
+                    cart.itemsId = itemId;
+
+                    for (var i = 0; i < Object.keys(cartsList).length; i++) {
+                        if (cartsList[i].itemsId == cart.itemsId) {
+                            flag = 1;
+                        }
+                    }
+                    if (flag == 0) {
+                        cartsList.push(cart);
+                    }
+
+                    localStorage.setItem("UserCart", JSON.stringify(cartsList));
+                    toastr.success("Added To Cart");
+
+                });
+
+                //Click on Image To Show It's Details
+                $(".row").on("click", "#imageanchor", function () {
+                    var button = $(this);
+                    //Getting CatId & ItemId from Buttons
+                    var itemId = button.attr("data-item-id");
+                    var catId = button.attr("data-cat-id");
+
+                    //Placing Ids in Local Storage
+                    localStorage.setItem("ItemId", itemId);
+                    localStorage.setItem("CatId", catId);
+
+                    //Redirecting to Show Page
+                    $(window).attr('location', '/items/show');
+                });
+
+                //Storing the object coming by Clicking Search button in a variable
+                var searchitem = localStorage.getItem("SearchItem");
+                //console.log(searchitem);
+                //Filling the Items From Database If User Is Not Filtering
+                if (searchitem == null) {
+                    $.ajax({
+                        url: "/api/items",
+                        method: "GET",
+                        success: function (item) {
+                            $.each(item, function (index, item) {
+                                $(".row").append(
+                                    //Appending col-md-4 in row
+                                    $('<div>', { class: "col-md-4" }).append(
+                                        //Appending figure in col-md-4
+                                        $('<figure>', { class: "figure" }).append(
+                                            //Appending Figcaption,Image,Button in figure
+                                            $('<figcaption class="figure-caption text-center"><strong><i>'+item.Name+'</i></strong></figcaption>'),
+                                            $('<a data-cat-id="' + item.CategoriesId + '" data-item-id="' + item.ItemId + '" id="imageanchor">').append(
+                                                $('<img>',{class:"figure-img img-fluid rounded",id:"IndexImage",src:item.ImageUrl})
+                                            ),
+                                            $('<figcaption>', { class: "figure-caption text-center" }).append(
+                                                $('<div>', { class: "float-center" }).append(
+                                                    $('<label class="float-left"><strong><i>PKR: '+item.Price +'</i></strong></label>'),
+                                                    $('<button class="btn btn-outline-info float-right" data-item-id="' + item.ItemId + '" id="btncaption">Add To Cart</button>')
+                                                )
+                                            )
+                                        )
+                                    )
+                                 )
+                                        
+                            });
+                        }
+                    });
+                }
+                //Filling The Items On The Base of Filter User Is Using
+                else {
+
+
+                    //Removing LocalStorage
+                    localStorage.removeItem("SearchItem");
+
+                    //Parsing The Stringify object from searchButton
+                    var obj = $.parseJSON(searchitem);
+                    //Calling AJax Method and Passing Query String of CatName
+                    $.ajax({
+                        url: "/api/items?" + obj.choicename + "=" + obj.itemname,
+                        method: "GET",
+                        success: function (item) {
+                            $.each(item, function (index, item) {
+                                $(".row").append(
+                                //Appending col-md-4 in row
+                                $('<div>', { class: "col-md-4" }).append(
+                                    //Appending figure in col-md-4
+                                    $('<figure>', { class: "figure" }).append(
+                                        //Appending Figcaption,Image,Button in figure
+                                        $('<figcaption class="figure-caption text-center"><strong>' + item.Name + '</strong></figcaption>'),
+                                        $('<a data-cat-id="' + item.CategoriesId + '" data-item-id="' + item.ItemId + '" id="imageanchor">').append(
+                                                $('<img>', { class: "figure-img img-fluid rounded", id: "IndexImage", src: item.ImageUrl })
+                                            ),
+                                        $('<figcaption>', { class: "figure-caption text-center" }).append(
+                                            $('<div>', { class: "float-center" }).append(
+                                                 $('<label class="float-left"><strong><i>PKR: ' + item.Price + '</i></strong></label>'),
+                                                    $('<button class="btn btn-outline-info float-right" data-item-id="' + item.ItemId + '" id="btncaption">Add To Cart</button>')
+                                            )
+                                        )
+                                    )
+                                )
+                             )
+                            });
+                        }
+                    });
+                }
+              
+            });
+        </script>
+    }
+

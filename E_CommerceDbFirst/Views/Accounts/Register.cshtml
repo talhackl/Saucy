@@ -1,0 +1,126 @@
+﻿@model E_CommerceDbFirst.Models.Stripe
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Register Yourself</h2>
+@using(Html.BeginForm("Register","Accounts"))
+{
+    <div class="row">
+        <div class="form-group col-md-4">
+            @Html.LabelFor(stripe => stripe.FirstName)
+            @Html.TextBoxFor(stripe => stripe.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(stripe => stripe.FirstName)
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(stripe => stripe.LastName)
+            @Html.TextBoxFor(stripe => stripe.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(stripe => stripe.LastName)
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(stripe => stripe.EmailAddress)
+            @Html.TextBoxFor(stripe => stripe.EmailAddress, new { @class = "form-control" })
+            @Html.ValidationMessageFor(stripe => stripe.EmailAddress)
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="form-group col-md-4">
+            @Html.LabelFor(stripe => stripe.CreditCard)
+            @Html.TextBoxFor(stripe => stripe.CreditCard, new { @class = "form-control" })
+            @Html.ValidationMessageFor(stripe => stripe.CreditCard)
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(stripe => stripe.CVC)
+            @Html.TextBoxFor(stripe => stripe.CVC, new { @class = "form-control" })
+            @Html.ValidationMessageFor(stripe => stripe.CVC)
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(stripe => stripe.ExpMonth)
+            @Html.TextBoxFor(stripe => stripe.ExpMonth, new { @class = "form-control" })
+            @Html.ValidationMessageFor(stripe => stripe.ExpMonth)
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="form-group col-md-4">
+            @Html.LabelFor(stripe => stripe.ExpYear)
+            @Html.TextBoxFor(stripe => stripe.ExpYear, new { @class = "form-control" })
+            @Html.ValidationMessageFor(stripe => stripe.ExpYear)
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(stripe => stripe.AddressLine1)
+            @Html.TextBoxFor(stripe => stripe.AddressLine1, new { @class = "form-control" })
+            @Html.ValidationMessageFor(stripe => stripe.AddressLine1)
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(stripe => stripe.AddressLine2)
+            @Html.TextBoxFor(stripe => stripe.AddressLine2, new { @class = "form-control" })
+            @Html.ValidationMessageFor(stripe => stripe.AddressLine2)
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="form-group col-md-4">
+            @Html.LabelFor(stripe => stripe.ZipCode)
+            @Html.TextBoxFor(stripe => stripe.ZipCode, new { @class = "form-control" })
+            @Html.ValidationMessageFor(stripe => stripe.ZipCode)
+        </div>
+        <div class="form-group col-md-4">
+            @Html.LabelFor(stripe => stripe.State)
+            @Html.TextBoxFor(stripe => stripe.State, new { @class = "form-control" })
+            @Html.ValidationMessageFor(stripe => stripe.State)
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(stripe => stripe.Country)
+            @Html.TextBoxFor(Stripe => Stripe.Country, new { @class = "form-control" })
+            @Html.ValidationMessageFor(Stripe => Stripe.Country)
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="form-group col-md-3">
+            @Html.LabelFor(Stripe => Stripe.UserName)
+            @Html.TextBoxFor(Stripe => Stripe.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(Stripe => Stripe.UserName)
+        </div>
+
+        <div class="form-group col-md-3">
+            @Html.LabelFor(stripe => stripe.PhoneNo)
+            @Html.TextBoxFor(stripe => stripe.PhoneNo, new { @class = "form-control" })
+            @Html.ValidationMessageFor(stripe => stripe.PhoneNo)
+        </div>
+
+        <div class="form-group col-md-3">
+            @Html.LabelFor(Stripe => Stripe.Password)
+            @Html.PasswordFor(Stripe => Stripe.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(Stripe => Stripe.Password)
+        </div>
+
+        <div class="form-group col-md-3">
+            @Html.LabelFor(stripe => stripe.Confirmpassword)
+            @Html.PasswordFor(stripe => stripe.Confirmpassword, new { @class = "form-control" })
+            @Html.ValidationMessageFor(stripe => stripe.Confirmpassword)
+        </div>
+    </div>
+    
+    <button class="btn btn-outline-success">Register</button>
+    
+    
+    {
+        <script src="~/Scripts/jquery-3.3.1.js"></script>
+        <script src="~/Scripts/toastr.min.js"></script>
+        if (!string.IsNullOrEmpty(ViewBag.RegisterError))
+        {
+            <script type="text/javascript">toastr.error("@ViewBag.RegisterError")</script>
+        }
+    }
+}

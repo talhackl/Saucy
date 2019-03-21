@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table id="items" class="table table-condensed">
+    <thead>
+        <tr>
+            <td>Image</td>
+            <td>Item's Name</td>
+            <td>Price</td>
+            <td>Category Name</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var itemId = 0;
+            var table=$("#items").DataTable({
+                ajax: {
+                    url: "/api/items",
+                    dataSrc:""
+                },
+                columns: [
+                    {
+                        //Embeding Image
+                        render: function (data, type, row) {
+                            return '<img src=' + row.ImageUrl + ' style="height:100px;width:150px;" class="img-thumbnail img-fluid rounded">';
+                        }
+                    },
+                    {
+                        data:"Name"
+                    },
+                    {
+                        data:"Price"
+                    },
+                    {
+                        data:"CategoriesName"
+                    },
+                    {
+                        //Embeding Delete Button
+                        data: "ItemId",
+                        render: function (data) {
+                            return "<button class='btn btn-danger delete' data-item-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+            //Click on Delete Button
+            $("#items").on("click", ".delete", function () {
+                var button = $(this);
+                bootbox.confirm("Are You Sure To Delete", function (result) {
+                    if (result) {
+                        //Deleting Through Ajax
+                        $.ajax({
+                            url: "/api/items/" + button.attr("data-item-id"),
+                            method: "PUT",
+                            success: function () {
+                                
+                                location.reload();
+                                toastr.success("Data Deleted Successfully");
+                            }
+                        });
+                    }
+                });
+               
+            });
+        });
+    </script>    
+}

@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "ViewOrders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron text-center">
+    <h1>Orders</h1>
+</div>
+<table id="order" class="table table-condensed">
+    <thead>
+        <tr>
+            <th>Item Name</th>
+            <th>Price/Item</th>
+            <th>Item's Quantity</th>
+            <th>Total Price</th>
+            <th>Ordered By</th>
+            <th>Ordered Date</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#order").DataTable({
+                ajax: {
+                    url: "/api/orders",
+                    dataSrc:""
+                },
+                columns: [
+                    {
+                       data:"Name"
+                    },
+                    {
+                        data:"PricePerUnit"
+                    },
+                    {
+                        data:"ItemsQuantity"
+                    },
+                    {
+                        render: function (data, type, row) {
+                            var totalPrice = parseInt(row.PricePerUnit) * parseInt(row.ItemsQuantity);
+                            return '<span>' + totalPrice + '</span>';
+                        }
+                    },
+                    {
+                        data:"OrderedBy"
+                    },
+                    {
+                        data: "DateCreated",
+                    }
+                ]
+            });
+        });
+    </script>
+}

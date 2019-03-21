@@ -1,0 +1,334 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<form id="stripe">
+
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="fname">First Name</label>
+            <input type="text" class="form-control" id="fname" name="fname" />
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="lname">Last Name</label>
+            <input type="text" class="form-control" id="lname" name="lname" />
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="email">Email Address</label>
+            <input type="text" name="email" id="email" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="cardnumber">Credit Card Number</label>
+            <input type="text" class="form-control" id="cardnumber" name="cardnumber" />
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="cvc">CVC</label>
+            <input type="text" class="form-control" id="cvc" name="cvc" />
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="expmonth">Expiry Month</label>
+            <input type="text" class="form-control" id="expmonth" name="expmonth" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="expyear">Expiry Year</label>
+            <input type="text" class="form-control" id="expyear" name="expyear" />
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="addline1">Addres Line 1</label>
+            <input type="text" class="form-control" id="addline1" name="addline1" />
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="addline2">Address Line 2</label>
+            <input type="text" class="form-control" id="addline2" name="addline2" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-4 ">
+            <label for="addzip">Zip Code</label>
+            <input type="text" class="form-control" id="addzip" name="addzip" />
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="addstate">State Name</label>
+            <input type="text" class="form-control" id="addstate" name="addstate" />
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="addcountry">Country Name</label>
+            <input type="text" class="form-control" id="addcountry" name="addcountry" />
+        </div>
+    </div>
+
+    <div class="row" id="signInrow"></div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="col-md-4">
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="signIn">
+                    <label class="form-check-label" for="signIn">SignIn</label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-outline-success" id="submit">Purchase</button>
+            </div>
+        </div>
+        <div class="col-md-4"> </div>
+    </div>
+
+</form>
+
+
+@section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            //getting the items and items quantity that customer has in carts
+            var cartsList = JSON.parse(localStorage.getItem("UserCart"));
+
+            $.validator.addMethod("alphabetsValidator", function (value, element) {
+                if (/^[a-zA-Z\s]+$/.test(value))
+                    return true;
+                else
+                    return false;
+            }, "Alphabets Allowed");
+            $.validator.addMethod("cardValidator", function (value, element) {
+                if (/^[0-9]\d*$/.test(value)) {
+                        return true;
+                }
+                else
+                    return false;
+            }, "Card Must Be Of 16 Digits");
+            $.validator.addMethod("cvc", function (value, element) {
+                if (/^[0-9]\d*$/.test(value)) {
+                        return true;
+                }
+                else
+                    return false;
+            }, "CVC Card Must Be Of 3 Digits");
+            $.validator.addMethod("expMonth", function (value, element) {
+                if (/^[0-9]\d*$/.test(value)) {
+                        return true;
+                }
+                else
+                    return false;
+            }, "Expiry Month Must Be Of 2 Digits");
+            $.validator.addMethod("expYear", function (value, element) {
+                if (/^[0-9]\d*$/.test(value)) {
+                        return true;
+                }
+                else
+                    return false;
+            },"Expiry Month Must Be Of 4 Digits");
+            $.validator.addMethod("zipCode", function (value, element) {
+                if (/^[0-9]\d*$/.test(value)) {
+                        return true;
+                }
+                else
+                    return false;
+            }, "Zip Code Must Be In Digits");
+
+
+            $("#stripe").validate({
+                rules: {
+                    fname: {
+                        required: true,
+                        alphabetsValidator: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                     }
+                    },
+                    lname: {
+                        required: true,
+                        alphabetsValidator: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                        }
+                    },
+                    email: {
+                        required: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                        }
+                    },
+                    cardnumber: {
+                        required: true,
+                        maxlength: 16,
+                        minlength: 16,
+                        cardValidator: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                        }
+                    },
+                    cvc: {
+                        required: true,
+                        maxlength: 3,
+                        minlength: 3,
+                        cvc: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                        }
+                    },
+                    expmonth: {
+                        required: true,
+                        maxlength: 2,
+                        minlength: 2,
+                        expMonth: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                        }
+                    },
+                    expyear: {
+                        required: true,
+                        maxlength: 4,
+                        minlength: 4,
+                        expYear: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                        }
+                    },
+                    addline1:{
+                        required: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                        }
+                    },
+                    addline2:{
+                        required: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                        }
+                    },
+                    addzip:{
+                        required: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                        }
+                    },
+                    addstate:{
+                        required: true,
+                        alphabetsValidator: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                        }
+                    },
+                    addcountry:{
+                        required: true,
+                        alphabetsValidator: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                        }
+                    },
+                    username: {
+                        required: true,
+                        normalizer: function (value) {
+                            return $.trim(value);
+                        }
+                    },
+                    password: {
+                        required:true
+                    },
+                    confirmpassword: {
+                        required: true,
+                        equalTo: "#password"
+                    }
+
+
+                },
+                submitHandler: function (form) {
+                    var combo = {
+                                stripe: {},
+                                cartlist: []
+                            };
+                            combo.stripe.firstname = $("#fname").val();
+                            combo.stripe.lastname = $("#lname").val();
+                            combo.stripe.emailaddress = $("#email").val();
+                            combo.stripe.creditcard = $("#cardnumber").val();
+                            combo.stripe.cvc = $("#cvc").val();
+                            combo.stripe.expmonth = $("#expmonth").val();
+                            combo.stripe.expyear = $("#expyear").val();
+                            combo.stripe.addressline1 = $("#addline1").val();
+                            combo.stripe.addressline2 = $("#addline2").val();
+                            combo.stripe.zipcode = $("#addzip").val();
+                            combo.stripe.state = $("#addstate").val();
+                            combo.stripe.country = $("#addcountry").val();
+                            combo.stripe.username = $("#username").val();
+                            combo.stripe.password = $("#password").val();
+                            combo.stripe.phoneno = $("#phoneNo").val();
+                            for (var i = 0; i < Object.keys(cartsList).length; i++) {
+                                combo.cartlist.push(cartsList[i]);
+                            }
+                            combo = JSON.stringify(combo);
+                            $.ajax({
+                                url: "/stripe/new",
+                                method: "POST",
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                data: combo,
+                                success: function (response) {
+                                    if (response.success) {
+                                        toastr.success("Purchasing Successfull");
+                                        localStorage.removeItem("UserCart");
+                                        cartsList = [];
+                                        $(location).attr('href', '/items/index')
+                                    }
+                                    else {
+                                        toastr.error(response.responseText);
+                                    }
+                                },
+                                fail: function () {
+                                    alert("Error");
+                                }
+
+                            });
+                }
+            });
+
+            //Appending the Row if user wants to SignIn
+            $("#signIn").click(function () {
+                if ($(this).prop('checked')) {
+                    $("#signInrow").append(
+                        $('<div>', { class: "form-group col-md-3 signIndiv" }).append(
+                            $('<label for="username">UserName</label>'),
+                            $('<input type="text" id="username" class="form-control" />')
+                        ),
+                        $('<div>', { class: "form-group col-md-3 signIndiv" }).append(
+                            $('<label for="password">Password</label>'),
+                            $('<input type="password" name="password" id="password" class="form-control" />')
+                        ),
+                        $('<div>', { class: "form-group col-md-3 signIndiv" }).append(
+                            $('<label for="confirmpassword">Confirm Password</label>'),
+                            $('<input type="password" name="confirmpassword" id="confirmpassword" class="form-control" />')
+                        ),
+                        $('<div>', { class: "form-group col-md-3 signIndiv" }).append(
+                            $('<label for="phoneNo">Phone Number</label>'),
+                            $('<input type="text" id="phoneNo" class="form-control" />')
+                        )
+                    )
+                }
+                else {
+                    $(".signIndiv").remove();
+                }
+            });
+
+            
+        });
+    </script>
+}

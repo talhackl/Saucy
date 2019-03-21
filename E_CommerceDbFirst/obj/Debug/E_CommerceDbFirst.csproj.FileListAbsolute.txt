@@ -1,0 +1,102 @@
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\obj\Debug\E_CommerceDbFirst.csprojResolveAssemblyReference.cache
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\E_CommerceDbFirst.dll.config
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\E_CommerceDbFirst.dll
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\E_CommerceDbFirst.pdb
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.Owin.Security.dll
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\Newtonsoft.Json.dll
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\ServiceStack.Client.dll
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\ServiceStack.Interfaces.dll
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\ServiceStack.Text.dll
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\Stripe.dll
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Buffers.dll
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Memory.dll
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\Antlr3.Runtime.pdb
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\EntityFramework.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\EntityFramework.SqlServer.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.Owin.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.Owin.Security.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\Newtonsoft.Json.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\ServiceStack.Client.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\ServiceStack.Interfaces.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\ServiceStack.Text.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\Stripe.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Buffers.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Memory.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Net.Http.Formatting.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Web.Helpers.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Web.Http.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Web.Http.WebHost.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Web.Mvc.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Web.Optimization.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Web.Razor.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Web.WebPages.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Web.WebPages.Deployment.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Web.WebPages.Razor.xml
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\obj\Debug\E_CommerceDbFirst.dll
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\obj\Debug\E_CommerceDbFirst.pdb
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\eLvisH\Documents\Visual Studio 2013\Projects\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.Owin.Security.Google.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\E_CommerceDbFirst.dll.config
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\E_CommerceDbFirst.dll
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\E_CommerceDbFirst.pdb
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.AspNet.Identity.Owin.dll
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.Owin.Host.SystemWeb.dll
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.Owin.Security.Cookies.dll
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.Owin.Security.dll
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.Owin.Security.Google.dll
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.Owin.Security.OAuth.dll
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\Newtonsoft.Json.dll
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\ServiceStack.Client.dll
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\ServiceStack.Interfaces.dll
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\ServiceStack.Text.dll
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\Stripe.dll
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Buffers.dll
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Memory.dll
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Runtime.CompilerServices.Unsafe.dll
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Runtime.InteropServices.RuntimeInformation.dll
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\Antlr3.Runtime.pdb
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\EntityFramework.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\EntityFramework.SqlServer.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.AspNet.Identity.Core.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.AspNet.Identity.Owin.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.Owin.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.Owin.Host.SystemWeb.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.Owin.Security.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.Owin.Security.Cookies.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.Owin.Security.Google.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\Microsoft.Owin.Security.OAuth.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\Newtonsoft.Json.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\ServiceStack.Client.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\ServiceStack.Interfaces.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\ServiceStack.Text.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\Stripe.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Buffers.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Memory.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Net.Http.Formatting.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Runtime.CompilerServices.Unsafe.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Web.Helpers.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Web.Http.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Web.Http.WebHost.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Web.Mvc.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Web.Optimization.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Web.Razor.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Web.Webpages.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Web.Webpages.Deployment.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\bin\System.Web.Webpages.Razor.xml
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\obj\Debug\E_CommerceDbFirst.csprojResolveAssemblyReference.cache
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\obj\Debug\E_CommerceDbFirst.dll
+G:\Study\Website\ASP.NET MVC\SAUCY\E_CommerceDbFirst\E_CommerceDbFirst\obj\Debug\E_CommerceDbFirst.pdb

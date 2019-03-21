@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "Show";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="lead"><b>Ingredients</b></div>
+            <div class="list-group">
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="lead" id="name"></div>
+            <div class="thumbnail">
+                <img class="img-fluid w-100" id="image" src="" />
+                <div class="card card-body bg-transparent" id="price">PKR</div>
+                <div>
+                    <div class="float-left">
+                        <a class="btn btn-info" id="cart">Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+<script>
+    $(document).ready(function () {
+
+        //Getting values from Index Page  & Removing LocalStorage
+        var itemId = localStorage.getItem("ItemId");
+        var catId = localStorage.getItem("CatId");
+        localStorage.removeItem("ItemId");
+        localStorage.removeItem("CatId");
+
+        //localStorage.removeItem("UserCart");
+
+        //checking if localStorage donot have the itemsId for Cart the create new array otherwise fill the existing items in array
+        if (localStorage.getItem("UserCart") == null) {
+            var cartsList = [];
+        }
+        else {
+            var cartsList = JSON.parse(localStorage.getItem("UserCart"));
+        }
+        //for filling objects in array
+        var cart = {};
+
+
+        //Click On Add to Cart Function
+
+        //the logic here is that if the item in cartsList donot exists then it add the itemsId
+        $("#cart").click(function () {
+            var flag = 0;
+            cart.itemsId = itemId;
+            
+            for (var i = 0; i < Object.keys(cartsList).length; i++) {
+                if (cartsList[i].itemsId == cart.itemsId) {
+                    flag = 1;
+                }
+            }
+            if (flag == 0) {
+                cartsList.push(cart);
+            }
+            localStorage.setItem("UserCart", JSON.stringify(cartsList));
+            toastr.success("Added To Cart");
+            //console.log(JSON.parse(localStorage.getItem("UserCart")));
+           
+
+        });
+
+        //Filling Page on the basis of ItemId
+        $.ajax({
+            url: "/api/items/"+itemId,
+            method: "GET",
+            success: function (data) {
+                $('#name').append($('<b>', { value: data[0].ItemId, text: data[0].Name, id: "name" }));
+                $("#image").attr("src", data[0].ImageUrl);
+                $("#price").append("<b>" + data[0].Price + "</b>");
+            }
+        });
+
+
+        //Filling Ingredients On the Basis of CatId
+        $.ajax({
+            url: "/api/ingredients/"+catId,
+            method: "GET",
+            success: function (ingredients) {
+                $.each(ingredients, function (index, ingredients) {
+                    $(".list-group").append(
+                        $('<li>', { class: 'list-group-item' }).append(
+                            $('<span>' + ingredients + '</span>')
+                         )
+                     );
+                });
+            }
+        });    
+    });
+</script>
+
+}

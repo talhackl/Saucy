@@ -1,0 +1,211 @@
+﻿
+@{
+    ViewBag.Title = "Save";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <h2>Enter New Item</h2>
+    <form id="items" method="post">
+        <div class="form-group">
+            <label for="name">Name OF Item</label>
+            <input type="text" class="form-control" name="name" id="name" aria-describedby="emailHelp">
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="text" name="price" class="form-control" id="price">
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select class="form-control" id="category"></select>
+        </div>
+
+
+        <div class="form-group">
+            <label for="image">Image</label>
+            <input type="file" class="form-control-file" id="image">
+        </div>
+
+        <div class="thumbnail">
+            <img id="preview_img" class="img-fluid w-25" src="" />
+        </div>
+        <button type="submit" class="btn btn-outline-success">Submit</button>
+    </form>
+
+</div>
+@section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            //Call image read and render function
+            $("#image").change(function () {
+                readImageData(this);
+            });
+
+            //Function for Reading and Rendering Selected Image
+            function readImageData(imgData) {
+                if (imgData.files && imgData.files[0]) {
+                    var readerObj = new FileReader();
+
+                    readerObj.onload = function (element) {
+                        $('#preview_img').attr('src', element.target.result);
+                    }
+
+                    readerObj.readAsDataURL(imgData.files[0]);
+                }
+            }
+
+            //Filling Drop Down from Category Table
+            $.ajax({
+                url: "/api/categories",
+                method: "GET",
+                success: function (data) {
+                    $.each(data, function (index, data) {
+                        $("#category").append($('<option>', { value: data.CategoriesId, text: data.CategoriesName }));
+                    });
+                }
+            });
+            
+            ////Filling DropDown From Ingredient Table
+            //$.ajax({
+            //    url: "/api/ingredients",
+            //    method: "GET",
+            //    success: function (data) {
+            //        $.each(data, function (index, data) {
+            //            $("#ingredient").append($('<option>', { value: data.IngredientId, text: data.IngredientName }));
+            //        });
+            //    }
+            //});
+
+
+            $("#ingredient").change(function () {
+
+                $("#ingredientslist").append("<li value="+$("#ingredient").val()+">"+$('#ingredient option:selected').text()+"</li>");
+            });
+
+            //Submitting the data on clicking on submit button
+            $("#items").on("click", ".btn", function () {
+                var Name= $("#name").val();
+                var Price= $("#price").val();
+                var CategoriesId = $("#category").val();
+
+                ////Making Form Data Object
+                var data = new FormData();
+                var files = $("#image").get(0).files;
+
+                // Add the uploaded image content to the form data collection
+                if (files.length > 0) {
+                    data.append("UploadedImage", files[0]);
+                    data.append("Name", Name);
+                    data.append("Price", Price);
+                    data.append("CategoriesId", CategoriesId);
+                   
+                }
+                //Posting The Data
+                    $.ajax({
+                        url: "/api/items/post",
+                        method: "POST",
+                        data: data,
+                        contentType: false,
+                        processData: false,
+                        success: function () {
+                            window.location="https://www.google.com"
+
+                        },
+                        fail: function () {
+                            toast.fail("Unsuccessfull");
+                        }
+                    });
+            });
+            //Self Defined Methods For Validation
+
+            //For Name
+            //jQuery.validator.addMethod("nameValidator", function (value, element) {
+            //    if (/^[a-zA-Z\s]+$/.test(value))
+            //        return true;
+            //    else
+            //        return false;
+            //}, "Enter Name In Alphabets");
+
+            ////FOr Price
+            //jQuery.validator.addMethod("priceValidator", function (value, element) {
+            //    if (/^[0-9]\d*$/.test(value))
+            //        if (value > 119 & value < 1301)
+            //            return true;
+            //    else
+            //        return false;
+            //}, "Price Must Be From 120 To 1300");
+
+            //For Image
+            //jQuery.validator.addMethod("imageValidator", function (value, element) {
+            //    check(value)
+            //    .on("error", function (e) {
+            //        console.log(e.type, this.src);
+            //    })
+            //    .on("load", function (e) {
+            //        console.log(e.type, this.src);
+            //    })
+            //}, "Enter Valid Url");
+
+            //$("#items").validate({
+            //    rules: {
+            //        name: {
+            //            required: true,
+            //            nameValidator: true,
+            //            normalizer: function (value) {
+            //                return $.trim(value);
+            //            }
+            //        },
+            //        price: {
+            //            required: true,
+            //            priceValidator: true,
+            //            normalizer: function (value) {
+            //                return $.trim(value);
+            //            }
+            //        }
+            //        //image: {
+            //        //    required: true,
+            //        //    imageValidator: true
+            //        //}
+            //    },
+                //Form Submiting
+                //submitHandler: function (form) {
+                //        //Getting values from TextBox
+                //    var Name= $("#name").val();
+                //    var Price= $("#price").val();
+                //    var CategoriesId = $("#category").val();
+
+                //    //Making Form Data Object
+                //    var data = new FormData();
+                //    var files = $("#image").get(0).files;
+
+                //    // Add the uploaded image content to the form data collection
+                //    if (files.length > 0) {
+                //        data.append("UploadedImage", files[0]);
+                //        data.append("Name", "ABC");
+                //        data.append("Price", "320");
+                //        data.append("CategoriesId", "1234");
+                //    }
+                //    console.log(data);
+                //        //Posting The Data
+                //        $.ajax({
+                //            url: "/api/items/post",
+                //            method: "POST",
+                //            data: data,
+                //            contentType: false,
+                //            processData: false,
+                //            success: function () {
+                //                alert("Data Added Successfully");
+                //            },
+                //            fail: function () {
+                //                alert("Unsuccessfull");
+                //            }
+                //        });
+                //}
+            //});
+        });
+    </script>
+}
+
+
+

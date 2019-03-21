@@ -1,0 +1,37 @@
+﻿@model E_CommerceDbFirst.Models.LogIn
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Login</h2>
+<link href="~/Content/toastr.css" rel="stylesheet" />
+@using (Html.BeginForm("Login", "Accounts"))
+{
+    
+    <div class="form-group">
+        @Html.LabelFor(login =>login.UserName)
+        @Html.TextBoxFor(login => login.UserName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(login => login.UserName)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(login => login.Password)
+        @Html.PasswordFor(login => login.Password, new { @class = "form-control" })
+        @Html.ValidationMessageFor(login => login.Password)
+    </div>
+    @Html.AntiForgeryToken()
+    <button class="btn btn-outline-success">LogIn</button>
+    {
+        <script src="~/Scripts/jquery-3.3.1.js"></script>
+        <script src="~/Scripts/toastr.min.js"></script>
+        if (!string.IsNullOrEmpty(ViewBag.Account))
+        {
+            <script type="text/javascript">toastr.error("@ViewBag.Account")</script>
+        }
+        if(!string.IsNullOrEmpty(ViewBag.UserError))
+        {
+            <script type="text/javascript">toastr.error("@ViewBag.UserError")</script>
+        }
+    }
+}

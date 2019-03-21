@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "AccountsIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AccountsIndex</h2>
+
+<table class="table table-hover" id="usertable" >
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>UserName</th>
+            <th>Is Locked</th>
+            <th>Stripe Account</th>
+            <th>Phone Number</th>
+            <th>Lock Account</th>
+            <th>UnLock Account</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#usertable").DataTable({
+                ajax: {
+                    url: "/api/accounts",
+                    dataSrc:""
+                },
+                columns: [
+                    {
+                        data:"Email"
+                    },
+                    {
+                        data:"UserName"
+                    },
+                    {
+                        data: "CustomerId",
+                        render: function (data) {
+                            if(data == "Null")
+                                return '<span>Not Activated</span>'
+                            else
+                                return '<span>Activated</span>'
+                        }
+                    },
+                    {
+                        data: "IsDisable",
+                        render: function (data) {
+                            if (data)
+                                return '<span>Locked</span>'
+                            else
+                                return '<span>Working</span>'
+                            
+                        }
+                    },
+                    {
+                        data:"PhoneNumber"
+                    },
+                    {
+                        data: "Id",
+                        render: function (data) {
+                            return '<button class="btn btn-outline-danger" data-user-id="'+data+'" id="btnlock" >Lock</button>'
+                        }
+                    },
+                    {
+                        data: "Id",
+                        render: function (data) {
+                            return '<button class="btn btn-outline-success" data-user-id="' + data + '" id="btnunlock" >UnLock</button>'
+                        }
+                    }
+                ]
+            });
+            $("#usertable").on("click","#btnlock",function () {
+                $.ajax({
+                    url: "/api/accounts/" + $(this).attr("data-user-id"),
+                    method: "GET",
+                    success: function () {
+                        location.reload();
+                    }
+                });
+            });
+            $("#usertable").on("click", "#btnunlock", function () {
+                $.ajax({
+                    url: "/api/accounts/" + $(this).attr("data-user-id"),
+                    method: "POST",
+                    success: function () {
+                        location.reload();
+                    }
+                });
+            });
+        });
+    </script>
+}

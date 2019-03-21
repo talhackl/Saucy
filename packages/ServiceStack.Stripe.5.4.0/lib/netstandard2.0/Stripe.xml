@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Stripe</name>
+    </assembly>
+    <members>
+        <member name="P:ServiceStack.Stripe.CreateStripePlan.TrialPeriodDays">
+            <summary>
+            Still supported but not specified in arguments in latest API Version: https://stripe.com/docs/api#create_plan
+            </summary>
+        </member>
+        <member name="P:ServiceStack.Stripe.UpdateStripePlan.TrialPeriodDays">
+            <summary>
+            Still supported but not specified in arguments in latest API Version: https://stripe.com/docs/api#create_plan
+            </summary>
+        </member>
+        <member name="P:ServiceStack.Stripe.Types.StripePackageDimensions.Height">
+            <summary>
+            Height in inches
+            </summary>
+        </member>
+        <member name="P:ServiceStack.Stripe.Types.StripePackageDimensions.Width">
+            <summary>
+            Width in inches
+            </summary>
+        </member>
+        <member name="P:ServiceStack.Stripe.Types.StripePackageDimensions.Weight">
+            <summary>
+            Weight in inches
+            </summary>
+        </member>
+        <member name="P:ServiceStack.Stripe.Types.StripePackageDimensions.Length">
+            <summary>
+            Length in inches
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,60 @@
+﻿@using E_CommerceDbFirst.Models;
+@using Microsoft.AspNet.Identity;
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/home/landpage"><strong>SAUCY</strong></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        @*//Left Navbar//*@
+        <ul class="navbar-nav mr-auto ">
+
+
+            
+            @{
+                    <li class="nav-item">
+                        <a class="nav-link" href="/items/index"><strong>Items</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn" id="searchChoice" data-cat-name="Burger"><strong>Burgers</strong></a>
+                    </li>
+                     <li class="nav-item">
+                         <a class="nav-link btn" id="searchChoice" data-cat-name="Pizza"><strong>Pizzas</strong></a>
+                    </li>
+                     <li class="nav-item">
+                         <a class="nav-link btn" id="searchChoice" data-cat-name="Shawarma"><strong>Shawarma</strong></a>
+                    </li>
+                     <li class="nav-item">
+                         <a class="nav-link btn" id="searchChoice" data-cat-name="Sandwich"><strong>Sandwich</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn" id="searchChoice" data-cat-name=" Saucy Special"><strong>Saucy Special</strong></a>
+                    </li>   
+             }
+        </ul>
+
+                            @*//Right Navbar//*@
+        <ul class="nav justify-content-end" >
+
+            <li class="nav-item">
+                <a class="nav-link" href="/carts/index"><strong><i class="fa fa-cart-plus">Carts</i></strong></a>
+            </li>
+            @if (Request.IsAuthenticated)
+            {
+                <li class="nav-item" id="username">
+                    <a class="nav-link"><strong>@User.Identity.GetUserName()</strong></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  href="/accounts/logout"><strong><i class="fa fa-user-alt-slash">Logout</i></strong></a>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item"><a class="nav-link" href="/accounts/register"><strong><i class="fa fa-user-astronaut" >Register</i></strong></a></li>
+                <li class="nav-item"><a class="nav-link" href="/accounts/login"><strong><i class="fa fa-1x fa-user-circle">LogIn</i></strong></a></li>
+            }  
+            
+        </ul>
+    </div>
+</nav>

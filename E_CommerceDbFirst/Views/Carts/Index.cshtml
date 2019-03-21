@@ -1,0 +1,226 @@
+﻿    
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row"></div>
+<table id="cart" class="table table-condensed">
+    <thead>
+        <tr>
+            <td>Image</td>
+            <td>Item</td>
+            <td>Price</td>
+            <td>Qty</td>
+            <td>Subtotal</td>
+            <td>Remove</td>
+        </tr>
+    </thead>
+</table>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            //Storing The List of ItemsId from LocalStorage in CartsList
+            if (JSON.parse(localStorage.getItem("UserCart")) == null) {
+                toastr.error("Your Item's Cart Is Null");
+
+            }
+            if(JSON.parse(localStorage.getItem("UserCart")) !=null ){
+                //console.log(JSON.parse(localStorage.getItem("UserCart")));
+                //Appending the Purchase Buttons 
+                $(".row").append(
+                    $('<div>', { class: "col-md-6" }).append(
+                        $('<button class="btn btn-outline-primary text-center" id="SignInpurchase">Purchase</button>')
+                    ),
+                    $('<div>', { class: "col-md-6" }).append(
+                        $('<button class="btn btn-outline-primary text-center" id="LogInpurchase">Purchase With Existing Account</button>')
+                    )
+                   
+                    );
+                var cartsList = (JSON.parse(localStorage.getItem("UserCart")));
+                console.log(cartsList);
+                //Declaring the string for query to get items from database
+                var itemsId = "";
+                //Loop is running to concat the itemsId from cartsList in String'itemsId'
+                for (var i = 0; i < Object.keys(cartsList).length; i++) {
+                    if (itemsId == "") {
+                        itemsId += cartsList[i].itemsId;
+                    }
+                    else {
+                        itemsId += "," + cartsList[i].itemsId;
+                    }
+                }//Loop Ending
+                //Displaying Items in DataTable
+                var cart = $("#cart").DataTable({
+                    ajax: {
+                        url: "/api/carts?Ids=" + itemsId,
+                        dataSrc: ""
+                    },
+                    columns: [
+                        {
+                            render: function (data, type, row) {
+                                return '<img src=' + row.ImageUrl + ' style="height:80px;width:100px;" class="img-fluid rounded">';
+
+                            }
+                        },
+                        {
+
+                            data: "Name"
+                        },
+                        {
+                            render: function (data, type, row) {
+                                return '<span id="price">' + row.Price + '</span>'
+                            }
+                        },
+                        {
+                            render: function (data, type, row) {
+                                return '<button class="btn btn-light" id="minus">-</button>'
+                                        + '<input type="text" style="width:11%;text-align:center;" id="qty" min="1" maxlength="10" value="1" />'
+                                        + '<button class="btn btn-light" id="plus">+</button>'
+
+                            }
+                        },
+                        {
+                            render: function (data, type, row) {
+                                return '<span id="subtotal">' + row.Price + '</span>';
+                            }
+                        },
+                        {
+                            data: "ItemId",
+                            render: function (data) {
+                                return '<button class="btn btn-outline-danger" id="btndelete" data-item-id="' + data + '">Remove</button>';
+                            }
+                        }
+                    ]
+                });
+
+
+            }
+            //Add TO Cart Quantity Function 
+            $("#cart").on('focusin', 'tr', function () {
+                var plus = $(this).find("#plus");
+                var minus = $(this).find("#minus");
+                var input = $(this).find("#qty");
+                var price = $(this).find("#price");
+                var subtotal = $(this).find("#subtotal");
+                $(plus).click(function () {
+                    var qty = input.val();
+                    if (qty < 8) {
+                        qty++;
+                        input.attr("value", qty);
+                        var pricetext = price.text();
+                        var subtotaltext = parseInt(pricetext) * qty;
+                        subtotal.text(subtotaltext);
+                    }
+                });
+                $(minus).click(function () {
+                    var qty = input.val();
+                    if (qty > 0) {
+                        qty--;
+                        input.attr("value", qty);
+                        var pricetext = price.text();
+                        var subtotaltext = subtotal.text();
+                        var subtotaltext = parseInt(subtotaltext) - parseInt(pricetext);
+                        subtotal.text(subtotaltext);
+                    }
+                    
+                });
+            });
+            $("#LogInpurchase").click(function () {
+                var username = $(".nav #username a ").text();
+                trimedUserName = $.trim(username);
+                if (trimedUserName.length > 0) {
+
+                    $('#cart tbody tr').each(function () {
+                        var quantHtml = $(this).find("td:nth-child(4)").html();
+                        var idHtml = $(this).find("td:nth-child(6)").html();
+
+                        var itemQuantity = $(quantHtml).filter("#qty").val();
+                        var itemId = $(idHtml).attr("data-item-id");
+
+                        for (var i = 0; i < Object.keys(cartsList).length; i++) {
+                            if (cartsList[i].itemsId == itemId) {
+                                cartsList[i].itemsQunatity = itemQuantity;
+                            }
+                        }
+                    });
+                    var combo = {
+                        cartlist:[]
+                    }
+                    for (var i = 0; i < Object.keys(cartsList).length; i++) {
+                        combo.cartlist.push(cartsList[i]);
+                    }
+                    combo = JSON.stringify(combo);
+                    console.log(combo);
+                    $.ajax({
+                        url: "/stripe/LogInPurchase",
+                        method: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: combo,
+                        success: function (response) {
+                            if (response.success) {
+                                toastr.success("Purchasing Successfull");
+                                localStorage.removeItem("UserCart");
+                                cartsList = [];
+                                $(location).attr('href', '/items/index')
+                            }
+                            else {
+                                toastr.error(response.responseText);
+                            }
+                        },
+                        fail: function (response) {
+                            if (response.fail) {
+                                alert("Error");
+                            }
+                        }
+
+                    });
+                }
+                else {
+                    $(location).attr('href', '/accounts/login');
+                }
+            });
+
+
+
+            //here for now i am getting the data from datatables so that i add the quantity in cartslist and proceed to payment
+            //Click on Purchase Button
+            $("#SignInpurchase").click(function () {
+                $('#cart tbody tr').each(function () {
+                    var quantHtml = $(this).find("td:nth-child(4)").html();
+                    var idHtml = $(this).find("td:nth-child(6)").html();
+
+                    var itemQuantity = $(quantHtml).filter("#qty").val();
+                    var itemId = $(idHtml).attr("data-item-id");
+                    
+                    for (var i = 0; i < Object.keys(cartsList).length; i++) {
+                        if (cartsList[i].itemsId == itemId) {
+                            cartsList[i].itemsQunatity = itemQuantity;
+                        }
+                    }
+                });
+                localStorage.setItem("UserCart", JSON.stringify(cartsList));
+                $(location).attr('href', '/stripe/SignInPurchase');
+            });
+
+
+            //Click on Delete Button
+            $("#cart").on("click", "#btndelete", function () {
+                var itemId = $(this).attr("data-item-id");
+                for (var i = 0; i < Object.keys(cartsList).length; i++) {
+                    if (cartsList[i].itemsId == itemId) {
+                        cartsList.splice(i, 1);
+                    }
+                }
+                localStorage.setItem("UserCart", JSON.stringify(cartsList));
+                if (Object.keys(cartsList).length < 1) {
+                    localStorage.removeItem("UserCart");
+                    $(location).attr('href', '/items/index');
+                }
+                location.reload();
+            });
+        });
+    </script>
+
+}

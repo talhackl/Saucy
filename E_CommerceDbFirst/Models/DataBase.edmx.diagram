@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="732988adcd0141699ee67df725d8a202" Name="Diagram1">
+        <EntityTypeShape EntityType="E_CommerceModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_CommerceModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_CommerceModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_CommerceModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_CommerceModel.AspNetUser" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_CommerceModel.Cart" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_CommerceModel.Category" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_CommerceModel.Ingredient" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_CommerceModel.Item" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <AssociationConnector Association="E_CommerceModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="E_CommerceModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="E_CommerceModel.FK_Carts_Items" ManuallyRouted="false" />
+        <AssociationConnector Association="E_CommerceModel.FK_Items_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="E_CommerceModel.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="E_CommerceModel.CategoryIngredient" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="E_CommerceModel.Order" Width="1.5" PointX="5.25" PointY="12.625" />
+        <AssociationConnector Association="E_CommerceModel.FK_Orders_Items" />
+        <AssociationConnector Association="E_CommerceModel.ItemsIngredients" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
